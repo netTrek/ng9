@@ -44,12 +44,12 @@ export abstract class GameObject {
     this.target.remove();
     this.hit$.next( this );
     this.hit$.complete();
-    // GameCtrl.getInstance().remove ( this );
   }
 
   private init() {
     this.body = document.querySelector ( 'body' ) as HTMLBodyElement;
     this.addImg ();
+    this.detectMaxima ();
     this.setRandomPosition ();
     this.run();
     this.addListener ();
@@ -64,10 +64,13 @@ export abstract class GameObject {
   }
 
   private setRandomPosition() {
-    this.maxX = window.screen.availWidth - 100;
-    this.maxY = window.screen.availHeight - 100;
     this.x    = Math.floor ( Math.random () * this.maxX );
     this.y    = Math.floor ( Math.random () * this.maxY );
+  }
+
+  private detectMaxima() {
+    this.maxX = window.screen.availWidth - 100;
+    this.maxY = window.screen.availHeight - 100;
   }
 
   private addListener() {

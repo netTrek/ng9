@@ -35,6 +35,10 @@ export class GameCtrl {
     if ( friendId !== - 1 ) {
       this.friends.splice ( friendId, 1 );
     }
+    this.checkForGameState ();
+  }
+
+  private checkForGameState() {
     if ( !this.disposing && this.enemies.length === 0 ) {
       this.dispose ();
       alert ( 'you won' );
@@ -47,29 +51,36 @@ export class GameCtrl {
 
   private init() {
     this.score = Point.getInstance ();
-    for ( let i = 0; i < 20; i ++ ) {
-      let go: GameObject;
-      if ( i % 2 === 0 ) {
-        go = new Enemy();
-        this.enemies.push ( go as Enemy );
-      } else {
-        go = new Friend();
-        this.friends.push ( new Friend () as Friend );
-      }
-      go.hit$.pipe( take(1) ).subscribe(
-        gameObj => this.remove ( gameObj )
-      );
+    for ( let i = 0; i < 10; i ++ ) {
+      const go: GameObject = this.getRandomGameObj ();
+      go.hit$.pipe ( take ( 1 ) )
+        .subscribe (
+          gameObj => this.remove ( gameObj )
+        );
     }
+  }
+
+  private getRandomGameObj() {
+    let go: GameObject;
+    if ( Math.random () > .4 ) {
+      go = new Enemy ();
+      this.enemies.push ( go as Enemy );
+    } else {
+      go = new Friend ();
+      this.friends.push ( go as Friend );
+    }
+    return go;
   }
 
   private dispose() {
     this.disposing = true;
-    while ( this.enemies.length > 0 ) {
-      this.enemies.pop ()
-          .destroy ();
-    }
-    while ( this.friends.length > 0 ) {
-      this.friends.pop ()
+    this.releaseAllObj ( this.enemies );
+    this.releaseAllObj ( this.friends );
+  }
+
+  private releaseAllObj( list: (Friend | Enemy)[] ) {
+    while ( list.length > 0 ) {
+      list.pop ()
           .destroy ();
     }
   }
