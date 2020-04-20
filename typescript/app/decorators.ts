@@ -6,7 +6,7 @@ export function handelEventFor( element: string = 'body', event: string = 'click
     const htmlElement = document.querySelector ( element );
     const subscription = fromEvent ( htmlElement, event )
       .subscribe (
-        descriptor.value.bind ( target ),
+        val => descriptor.value ( val ),
         err => console.error( err ),
         () => console.log ( 'fertig' )
       );

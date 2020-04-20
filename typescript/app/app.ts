@@ -20,7 +20,7 @@ export class App {
   }
 
   @handelEventFor( 'body main h1', 'click' )
-  click() {
-    console.log ( 'rock and rool' );
+  click(evt) {
+    console.log ( 'rock and rool', evt, this );
   }
 }
