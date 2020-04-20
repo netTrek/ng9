@@ -1,8 +1,19 @@
 import { GameChar } from './app/game-char';
+import { LambdaSamples } from './app/lambda-samples';
+import { SyntaxMagie } from './app/syntax-magie';
 
+
+
+// const lambdaSamples: LambdaSamples = new LambdaSamples();
+const sm: SyntaxMagie = new SyntaxMagie();
+/*
 const g: GameChar = new GameChar(
   document.querySelector ('.gamer')
 );
+*/
+
+
+
 
 // import { myVar, env } from './app/app-values';
 // import { Human } from './app/human';
