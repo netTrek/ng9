@@ -2,6 +2,7 @@ import { Point } from './point';
 import { Enemy } from './enemy';
 import { Friend } from './friend';
 import { GameObject } from './game-object';
+import { take } from 'rxjs/operators';
 
 class Inner {
 }
@@ -15,7 +16,6 @@ export class GameCtrl {
   private disposing         = false;
 
   constructor( singleton: Inner ) {
-    console.log ( 'gameCtrl' );
     this.init ();
   }
 
@@ -48,11 +48,17 @@ export class GameCtrl {
   private init() {
     this.score = Point.getInstance ();
     for ( let i = 0; i < 20; i ++ ) {
+      let go: GameObject;
       if ( i % 2 === 0 ) {
-        this.enemies.push ( new Enemy () );
+        go = new Enemy();
+        this.enemies.push ( go as Enemy );
       } else {
-        this.friends.push ( new Friend () );
+        go = new Friend();
+        this.friends.push ( new Friend () as Friend );
       }
+      go.hit$.pipe( take(1) ).subscribe(
+        gameObj => this.remove ( gameObj )
+      );
     }
   }
 

@@ -1,8 +1,10 @@
-import { fromEvent, Subscription } from 'rxjs';
+import { fromEvent, Subject, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { GameCtrl } from './game-ctrl';
 
 export abstract class GameObject {
+
+  readonly hit$: Subject<GameObject> = new Subject<GameObject>()
   private body: HTMLBodyElement;
   private target: HTMLImageElement;
   protected clickSub: Subscription;
@@ -40,7 +42,9 @@ export abstract class GameObject {
 
   protected remove() {
     this.target.remove();
-    GameCtrl.getInstance().remove ( this );
+    this.hit$.next( this );
+    this.hit$.complete();
+    // GameCtrl.getInstance().remove ( this );
   }
 
   private init() {
@@ -55,13 +59,13 @@ export abstract class GameObject {
     const img: HTMLImageElement = new Image ( 50 );
     img.src                     = this.imgPath;
     img.setAttribute ( 'class', 'gamer' );
+    img.setAttribute ( 'draggable', 'false' );
     this.target = this.body.appendChild ( img );
   }
 
   private setRandomPosition() {
     this.maxX = window.screen.availWidth - 100;
     this.maxY = window.screen.availHeight - 100;
-    // console.log ( this.maxX );
     this.x    = Math.floor ( Math.random () * this.maxX );
     this.y    = Math.floor ( Math.random () * this.maxY );
   }

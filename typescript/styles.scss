@@ -1,13 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
-.points {
+.points, .gamer {
   display: inline-block;
   position: absolute;
+  user-select: none;
+}
+
+.points {
   border: red solid medium;
   top: 0;
   right: 0;
 }
 .gamer {
-  display: inline-block;
-  position: absolute;
 }

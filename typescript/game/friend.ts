@@ -1,6 +1,5 @@
 import { GameObject } from './game-object';
 import { interval, Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
 import { Point } from './point';
 
 export class Friend extends GameObject {
