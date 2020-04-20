@@ -9,10 +9,15 @@ export class Friend extends GameObject {
     super ( imgPath );
   }
 
-  hit() {
+  destroy() {
     this.runSub.unsubscribe();
-    Point.getInstance().addPoint ( -20 );
+    this.clickSub.unsubscribe();
     this.remove();
+  }
+
+  hit() {
+    this.destroy();
+    Point.getInstance().addPoint ( -20 );
   }
 
   run() {

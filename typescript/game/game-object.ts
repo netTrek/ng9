@@ -1,9 +1,11 @@
-import { fromEvent } from 'rxjs';
+import { fromEvent, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { GameCtrl } from './game-ctrl';
 
 export abstract class GameObject {
   private body: HTMLBodyElement;
   private target: HTMLImageElement;
+  protected clickSub: Subscription;
   protected maxX: number;
   protected maxY: number;
 
@@ -33,10 +35,12 @@ export abstract class GameObject {
 
   abstract run();
   abstract hit();
+  abstract destroy();
 
 
   protected remove() {
     this.target.remove();
+    GameCtrl.getInstance().remove ( this );
   }
 
   private init() {
@@ -63,7 +67,7 @@ export abstract class GameObject {
   }
 
   private addListener() {
-    fromEvent( this.target, 'click' ).pipe( first() ).subscribe(
+    this.clickSub = fromEvent( this.target, 'click' ).pipe( first() ).subscribe(
       () => this.hit()
     );
   }

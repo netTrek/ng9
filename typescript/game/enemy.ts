@@ -10,10 +10,15 @@ export class Enemy extends GameObject {
     super ( imgPath );
   }
 
-  hit() {
+  destroy() {
     this.runSub.unsubscribe();
-    Point.getInstance().addPoint ( 10 );
+    this.clickSub.unsubscribe();
     this.remove();
+  }
+
+  hit() {
+    this.destroy();
+    Point.getInstance().addPoint ( 10 );
   }
 
   run() {
