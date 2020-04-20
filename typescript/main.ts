@@ -1,9 +1,15 @@
-import { myVar, env } from './app/app-values';
-import { Human } from './app/human';
-import { Man } from './app/Man';
+import { GameChar } from './app/game-char';
 
-const h: Man = new Man( 'saban ünlü' );
-console.log ( h, h.sayYourName() );
+const g: GameChar = new GameChar(
+  document.querySelector ('.gamer')
+);
+
+// import { myVar, env } from './app/app-values';
+// import { Human } from './app/human';
+// import { Man } from './app/Man';
+//
+// const h: Man = new Man( 'saban ünlü' );
+// console.log ( h, h.sayYourName() );
 
 // h.age = 11;
 // console.log ( h.age );
@@ -16,7 +22,7 @@ console.log ( h, h.sayYourName() );
 
 // h.sayYourName();
 // debugger
-h.name = 'peter müller';
+// h.name = 'peter müller';
 // h.sayYourName();
 // console.log ( Human.MY_VAL );
 /*
