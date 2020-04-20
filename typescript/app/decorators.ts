@@ -1,10 +1,5 @@
 import { fromEvent } from 'rxjs';
-import Func = jasmine.Func;
 
-/**
- * File created by suenlue on 19.04.20.
- * Copyright (c) 2020 by netTrek GmbH & Co. KG
- */
 export function handelEventFor( element: string = 'body', event: string = 'click' ) {
   return (target, propertyKey: string, descriptor: PropertyDescriptor) => {
     console.log ( target, propertyKey, descriptor );
