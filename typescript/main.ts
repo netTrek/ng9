@@ -1,11 +1,19 @@
 import { GameChar } from './app/game-char';
 import { LambdaSamples } from './app/lambda-samples';
 import { SyntaxMagie } from './app/syntax-magie';
+import { Gamecharcter } from './app/gamecharcter';
+import { Enemy } from './app/enemy';
+import { GameCtrl } from './game/game-ctrl';
+
+const gc: GameCtrl = GameCtrl.getInstance();
 
 
+/*
+const char: Gamecharcter = new Enemy( document.querySelector('body'));
+*/
 
 // const lambdaSamples: LambdaSamples = new LambdaSamples();
-const sm: SyntaxMagie = new SyntaxMagie();
+// const sm: SyntaxMagie = new SyntaxMagie();
 /*
 const g: GameChar = new GameChar(
   document.querySelector ('.gamer')
