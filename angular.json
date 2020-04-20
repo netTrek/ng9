@@ -123,6 +123,79 @@
           }
         }
       }
-    }},
-  "defaultProject": "proleit2020"
+    },
+    "typescript": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "typescript",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/typescript",
+            "index": "typescript/index.html",
+            "main": "typescript/main.ts",
+            "polyfills": "typescript/polyfills.ts",
+            "tsConfig": "tsconfig.typescript.json",
+            "aot": true,
+            "assets": [
+              "typescript/favicon.ico",
+              "typescript/assets"
+            ],
+            "styles": [
+              "typescript/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "typescript/environments/environment.ts",
+                  "with": "typescript/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "typescript:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "typescript:build:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "typescript"
 }
