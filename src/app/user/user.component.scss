@@ -1,7 +1,15 @@
-h1 {
-  color: darkcyan;
-}
 
-button {
-  background-color: aliceblue;
+
+:host { // bezieht sich auf die Komponente selbst
+
+  display: block;
+  background-color: darkcyan;
+
+  h1 {
+    color: darkcyan;
+  }
+
+  ::ng-deep button { // entfernt attribute im Selector
+    background-color: aliceblue;
+  }
 }
