@@ -8,6 +8,8 @@ ng new proleit2020 --prefix pl --style scss --routing
 
 - ng g m user --module app
 - ng g c user/user --flat --export --skip-tests 
+- ng g c user/userList --skip-tests  
+- ng g c user/user-list/userListItem --skip-tests 
 
 ## repository
 https://github.com/netTrek/ng9.git
