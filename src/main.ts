@@ -15,6 +15,6 @@ if (environment.production) {
   //   }
   // }
 }
-console.log ( environment.api );
+
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));

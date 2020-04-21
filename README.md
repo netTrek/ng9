@@ -6,6 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## erstellt
 ng new proleit2020 --prefix pl --style scss --routing 
 
+- ng g m user --module app
+- ng g c user/user --flat --export --skip-tests 
+
 ## repository
 https://github.com/netTrek/ng9.git
 
