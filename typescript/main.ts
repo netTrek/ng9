@@ -6,7 +6,7 @@ import { Enemy } from './app/enemy';
 import { GameCtrl } from './game/game-ctrl';
 
 const gc: GameCtrl = GameCtrl.getInstance();
-
+// const c = new GameCtrl();
 
 /*
 const char: Gamecharcter = new Enemy( document.querySelector('body'));

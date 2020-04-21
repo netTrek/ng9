@@ -15,13 +15,13 @@ export class GameCtrl {
   private friends: Friend[] = [];
   private disposing         = false;
 
-  constructor( singleton: Inner ) {
+  private constructor( ) {
     this.init ();
   }
 
   static getInstance(): GameCtrl {
     if ( !GameCtrl.INSTANCE ) {
-      GameCtrl.INSTANCE = new GameCtrl ( new Inner () );
+      GameCtrl.INSTANCE = new GameCtrl (  );
     }
     return GameCtrl.INSTANCE;
   }

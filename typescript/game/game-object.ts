@@ -1,10 +1,9 @@
 import { fromEvent, Subject, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { GameCtrl } from './game-ctrl';
 
 export abstract class GameObject {
 
-  readonly hit$: Subject<GameObject> = new Subject<GameObject>()
+  readonly hit$: Subject<GameObject> = new Subject<GameObject>();
   private body: HTMLBodyElement;
   private target: HTMLImageElement;
   protected clickSub: Subscription;
