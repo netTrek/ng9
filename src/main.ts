@@ -6,7 +6,15 @@ import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
-}
 
+  // const console = (window.console || {}) as Console;
+  // for ( const consoleKey in console ) {
+  //   if ( ! ! consoleKey && consoleKey !== 'error' ) {
+  //     console[ consoleKey ] = () => {
+  //     };
+  //   }
+  // }
+}
+console.log ( environment.api );
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
