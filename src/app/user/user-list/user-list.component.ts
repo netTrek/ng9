@@ -17,6 +17,7 @@ export class UserListComponent implements OnInit {
     { id: 2, firstname: 'peter', lastname: 'müller' },
     { id: 3, firstname: 'paula', lastname: 'meyer' }
   ];
+  private nextInd = 4;
 
   constructor() {
   }
@@ -34,11 +35,11 @@ export class UserListComponent implements OnInit {
     // } else {
     //   this.selectedUser = undefined;
     // }
-    this.selectedUser = this.selectedUser?.id === user.id ? undefined : user;
+    this.selectedUser = this.selectedUser?.id === user?.id ? undefined : user;
   }
 
   addRndUser() {
-    const lng = this.userList.length;
+    const lng = this.nextInd ++;
     this.userList.push (
       { id: lng, firstname: 'paula' + lng, lastname: 'meyer' + lng }
     );
@@ -46,7 +47,7 @@ export class UserListComponent implements OnInit {
   }
 
   del() {
-    this.userList     = this.userList.filter ( value => value !== this.selectedUser );
+    this.userList     = this.userList.filter ( value => value?.id !== this.selectedUser?.id );
     this.selectedUser = undefined;
     this.updateFilter ();
   }
@@ -59,7 +60,7 @@ export class UserListComponent implements OnInit {
 
   private updateFilter() {
     this.filtered =
-      this.userList.filter ( value => `${value.firstname}{value.lastname}`
+      this.userList.filter ( value => `${value.firstname}${value.lastname}`
         .indexOf ( this.filterStr ) !== - 1 );
   }
 
