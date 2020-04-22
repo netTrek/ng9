@@ -1,1 +1,20 @@
 <p>binding-sample works!</p>
+<img src="./assets/images/cat1.jpeg" alt="cat" width="30%">
+<img src="./assets/images/{{imgFile}}" alt="cat" width="30%">
+<ul>
+  <li>Str {{vorname}} {{nachnamen}}</li>
+  <li>Str {{myObj.username}} {{myObj.userlastname}}</li>
+  <li>Str {{myString}}</li>
+  <li>num {{myNum}}</li>
+  <li>op {{myNum + 20}}</li>
+  <li>obj {{myObj | json}}</li>
+  <li>methoden rückgabe {{getString()}} </li>
+  <li>mit statischen Params {{getString( 'hallo' )}} </li>
+  <li>mit ohne Params {{getString()}} </li>
+  <li>mit mit gebunden Params {{getString( this.myNum )}} </li>
+  <!--
+  <li>SO NIE !!!!!  {{1 + 1}}</li>
+  -->
+</ul>
+
+<button (click)="add()">add</button>
