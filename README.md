@@ -18,6 +18,12 @@ https://github.com/netTrek/ng9.git
 - us@netTrek.de
 
 ## Umfragen
+- sekunde 0 [         grün                   ]
+- sekunde 1 [         grün           |  rot  ]
+- sekunde 2 [         grün        |     rot  ]
+- sekunde 5 [                   rot          ]
+
+## Umfragen
 
 ## Development server
 
