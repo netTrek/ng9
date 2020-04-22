@@ -1,13 +1,28 @@
+<!--
+
 <p>user-list works!</p>
+
 <p>
   bis 13:25 pause... danach die Übung
   for ( let user of this.userList )
 </p>
+-->
 
-<pl-user-list-item *ngFor="let user of userList">
+<h2>userlist</h2>
+
+<input type="text"
+       placeholder="filter"
+       (keyup)="filter($event)">
+
+<pl-user-list-item
+  *ngFor="let user of filtered"
+  [class.selected]="selectedUser === user"
+  (click)="setAsSelected( user )"
+>
   {{user}}
 </pl-user-list-item>
-
+<button (click)="addRndUser()">+</button>
+<button [disabled]="!selectedUser" (click)="del()">del selected</button>
 <!--<pl-user-list-item>Saban</pl-user-list-item>
 <pl-user-list-item>Peter</pl-user-list-item>
 <pl-user-list-item>Heike</pl-user-list-item>-->
