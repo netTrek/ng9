@@ -1,12 +1,16 @@
 <h1>{{ title }} app is running!</h1>
 
-<pl-user></pl-user>
-
-
-<!--
-<pl-binding-sample></pl-binding-sample>
 
 <pl-countdown></pl-countdown>
+<pl-countdown
+  (complEvt)="ichHabeFertig()"
+  duration="1000"></pl-countdown>
+
+<!--
+<pl-user></pl-user>
+
+<pl-binding-sample></pl-binding-sample>
+
 <pl-countdown style="width: 100%; border: black solid thin"></pl-countdown>
 <pl-countdown style="width: 50%"></pl-countdown>
 

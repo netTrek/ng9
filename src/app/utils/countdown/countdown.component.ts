@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
@@ -10,7 +10,11 @@ import { map, take } from 'rxjs/operators';
 export class CountdownComponent implements OnInit {
 
   percent                                      = 100;
+  @Input( /* lieber nicht 'time'*/ )
   duration                                     = 5000;
+
+  @Output()
+  complEvt: EventEmitter<void> = new EventEmitter<void>()
   private subscription: Subscription;
   constructor() { }
 
@@ -25,7 +29,9 @@ export class CountdownComponent implements OnInit {
       )
       .subscribe (
         // prozentwert der Eigenschaft auf aktuellen Stream wert
-        next => this.percent = next
+        next => this.percent = next,
+        err => console.log ( err ),
+        () => this.complEvt.emit()
       );
   }
 

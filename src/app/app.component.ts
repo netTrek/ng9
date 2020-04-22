@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'proleit2020';
+
+  ichHabeFertig(  ) {
+    console.log ( 'fertig ohne fehler' );
+  }
 }

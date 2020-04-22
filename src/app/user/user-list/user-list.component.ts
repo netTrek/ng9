@@ -12,7 +12,8 @@ export class UserListComponent implements OnInit {
 
   private filterStr = '';
   private userList: string[] = [
-    'saban',
+    'saban ünlü',
+    'uli',
     'heike',
     'peter'
   ];

@@ -17,6 +17,9 @@
 <pl-user-list-item
   *ngFor="let user of filtered"
   [class.selected]="selectedUser === user"
+  [class.short]="user.length <= 3"
+  [class.long]="user.length > 7"
+  [class.middle]="user.length > 3 && user.length <= 7"
   (click)="setAsSelected( user )"
 >
   {{user}}
