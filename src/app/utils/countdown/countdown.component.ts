@@ -9,13 +9,23 @@ import { map, take } from 'rxjs/operators';
 })
 export class CountdownComponent implements OnInit, OnDestroy {
 
+
   percent                                      = 100;
   @Input( /* lieber nicht 'time'*/ )
-  duration                                     = 5000;
+  get duration(): number {
+    return this._duration;
+  }
+
+  set duration( value: number ) {
+    console.log ( 'duration defined as', value );
+    this._duration = value;
+  }
 
   @Output()
   complEvt: EventEmitter<void> = new EventEmitter<void>();
   private subscription: Subscription;
+  // tslint:disable-next-line
+  private _duration = 5000;
   constructor() { }
 
   ngOnInit(): void {
