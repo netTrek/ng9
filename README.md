@@ -14,6 +14,14 @@ ng new proleit2020 --prefix pl --style scss --routing
 ## repository
 https://github.com/netTrek/ng9.git
 
+## Umfragen
+- https://www.strawpoll.me/19837956
+- https://www.strawpoll.me/19837958
+- https://www.strawpoll.me/19837959
+- https://www.strawpoll.me/19837961
+- https://www.strawpoll.me/19837962
+- https://www.strawpoll.me/19837963
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
