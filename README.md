@@ -10,6 +10,7 @@ ng new proleit2020 --prefix pl --style scss --routing
 - ng g c user/user --flat --export --skip-tests 
 - ng g c user/userList --skip-tests  
 - ng g c user/user-list/userListItem --skip-tests 
+- ng generate interface user/user
 
 ## repository
 https://github.com/netTrek/ng9.git

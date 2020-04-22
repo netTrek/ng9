@@ -9,25 +9,4 @@
       cursor: default;
     }
   }
-  &.long {
-    color: red;
-
-    &:hover {
-      color: darkred;
-    }
-  }
-  &.middle {
-    color: green;
-
-    &:hover {
-      color: darkgreen;
-    }
-  }
-  &.short {
-    color: #b4b400;
-
-    &:hover {
-      color: #7d7d00;
-    }
-  }
 }

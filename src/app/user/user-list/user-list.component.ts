@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../user';
 
 @Component ( {
   selector   : 'pl-user-list',
@@ -7,16 +8,16 @@ import { Component, OnInit } from '@angular/core';
 } )
 export class UserListComponent implements OnInit {
 
-  filtered: string[];
-  selectedUser: string;
+  filtered: User[];
+  selectedUser: User;
 
-  private filterStr = '';
-  private userList: string[] = [
-    'saban ünlü',
-    'uli',
-    'heike',
-    'peter'
+  private filterStr        = '';
+  private userList: User[] = [
+    { id: 1, firstname: 'saban', lastname: 'ünlü' },
+    { id: 2, firstname: 'peter', lastname: 'müller' },
+    { id: 3, firstname: 'paula', lastname: 'meyer' }
   ];
+
   constructor() {
   }
 
@@ -27,37 +28,39 @@ export class UserListComponent implements OnInit {
     this.filtered = [...this.userList];
   }
 
-  setAsSelected( user: string ) {
+  setAsSelected( user: User ) {
     // if ( this.selectedUser !== user) {
     //   this.selectedUser = user;
     // } else {
     //   this.selectedUser = undefined;
     // }
-    this.selectedUser = this.selectedUser === user ? undefined : user;
+    this.selectedUser = this.selectedUser?.id === user.id ? undefined : user;
   }
 
   addRndUser() {
-    this.userList.push(
-      ['frank', 'paula', 'heiko', 'hanna'][Math.round( Math.random() * 3)]
+    const lng = this.userList.length;
+    this.userList.push (
+      { id: lng, firstname: 'paula' + lng, lastname: 'meyer' + lng }
     );
-    this.updateFilter();
+    this.updateFilter ();
   }
 
   del() {
-    this.userList = this.userList.filter( value => value !== this.selectedUser );
+    this.userList     = this.userList.filter ( value => value !== this.selectedUser );
     this.selectedUser = undefined;
-    this.updateFilter();
+    this.updateFilter ();
   }
 
   filter( chgEvent: Event ) {
     this.filterStr = (chgEvent.target as HTMLInputElement)
       .value;
-    this.updateFilter();
+    this.updateFilter ();
   }
 
   private updateFilter() {
-      this.filtered =
-        this.userList.filter( value => value.indexOf( this.filterStr ) !== -1 );
+    this.filtered =
+      this.userList.filter ( value => `${value.firstname}{value.lastname}`
+        .indexOf ( this.filterStr ) !== - 1 );
   }
 
 }

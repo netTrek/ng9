@@ -14,7 +14,7 @@ export class CountdownComponent implements OnInit {
   duration                                     = 5000;
 
   @Output()
-  complEvt: EventEmitter<void> = new EventEmitter<void>()
+  complEvt: EventEmitter<void> = new EventEmitter<void>();
   private subscription: Subscription;
   constructor() { }
 

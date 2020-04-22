@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from '../../user';
 
 @Component({
   selector: 'pl-user-list-item',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list-item.component.scss']
 })
 export class UserListItemComponent implements OnInit {
+  @Input() user: User;
   constructor() { }
   ngOnInit(): void {
   }
