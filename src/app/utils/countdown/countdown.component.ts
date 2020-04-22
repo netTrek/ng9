@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
@@ -7,7 +7,7 @@ import { map, take } from 'rxjs/operators';
   templateUrl: './countdown.component.html',
   styleUrls: ['./countdown.component.scss']
 })
-export class CountdownComponent implements OnInit {
+export class CountdownComponent implements OnInit, OnDestroy {
 
   percent                                      = 100;
   @Input( /* lieber nicht 'time'*/ )
@@ -33,6 +33,10 @@ export class CountdownComponent implements OnInit {
         err => console.log ( err ),
         () => this.complEvt.emit()
       );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }
