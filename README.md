@@ -14,13 +14,10 @@ ng new proleit2020 --prefix pl --style scss --routing
 ## repository
 https://github.com/netTrek/ng9.git
 
+## Kontakt
+- us@netTrek.de
+
 ## Umfragen
-- https://www.strawpoll.me/19837956
-- https://www.strawpoll.me/19837958
-- https://www.strawpoll.me/19837959
-- https://www.strawpoll.me/19837961
-- https://www.strawpoll.me/19837962
-- https://www.strawpoll.me/19837963
 
 ## Development server
 
