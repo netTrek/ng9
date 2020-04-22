@@ -13,11 +13,15 @@
 <input type="text"
        placeholder="filter"
        (keyup)="filter($event)">
+<!--
+
+  [class.selected]="selectedUser?.id === user?.id"
+-->
 
 <pl-user-list-item
   *ngFor="let user of filtered"
-  [class.selected]="selectedUser?.id === user?.id"
-  (click)="setAsSelected( user )"
+  (selectUsr)="setAsSelected( $event )"
+  [selected]="selectedUser?.id === user?.id"
   [user]="user"
 >
 </pl-user-list-item>
