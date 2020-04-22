@@ -28,11 +28,24 @@ export class BindingSampleComponent implements OnInit {
     return prefix ? `${prefix} ${this.myString}` : this.myString;
   }
 
-  add() {
-    this.myNum ++;
+  add( num: number = 5, $event: MouseEvent ) {
+    console.log ( $event );
+    this.myNum += num;
     this.imgFile = 'cat2.jpeg';
     this.imgPath = './assets/images/cat2.jpeg';
     this.showRed = !this.showRed;
-    this.width -= 5;
+    this.width -= num;
+  }
+
+  in() {
+    console.log ( 'in' );
+  }
+
+  out() {
+    console.log ( 'out' );
+  }
+
+  over() {
+    console.log ( 'over' );
   }
 }

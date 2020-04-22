@@ -8,7 +8,12 @@ style="width: 60%"
 <div class="font-bold bg"
      [class]="classList"
      [style.width.%]="width"
->Lorem ipsum dolor</div>
+     (mouseenter)="in()"
+     (mouseleave)="out()"
+     (mouseover)="over()">
+  Lorem ipsum dolor
+  <img [src]="imgPath" alt="cat" width="10%" >
+</div>
 <div class="font-bold" [class.font-red]="showRed">Lorem ipsum dolor</div>
 
 <!--
@@ -34,4 +39,4 @@ style="width: 60%"
   -->
 </ul>
 
-<button (click)="add()">add</button>
+<button (click)="add( 10, $event )">add</button>
