@@ -18,15 +18,14 @@ https://github.com/netTrek/ng9.git
 ## Kontakt
 - us@netTrek.de
 
-## Umfragen
-- https://www.strawpoll.me/19846967
-- https://www.strawpoll.me/19846966
-- https://www.strawpoll.me/19846965
-- https://www.strawpoll.me/19846964
-- https://www.strawpoll.me/19846963
-- https://www.strawpoll.me/19846961
+## Aufgabe
+- In das Utils Modul legen wir eine Directive ab (name: danger) - in eigenen Ordner
+- ng g d utils/danger --skip-tests --export --flat false
+- Directive soll nur auf <button> oder <a>
+- Directive soll text fett darstellen und hintergrund rot
+- Directive soll System um ein Ereignis Confirmed Bereichernt werden das Klick abh. ist
+- Confirmed darf nur gefeuert werden, wenn der Benutzer eine Confirm Message zustimmt
 
-## Umfragen
 
 ## Development server
 
