@@ -35,8 +35,9 @@
 >
 </pl-user-list-item>
 <button (click)="addRndUser()">+</button>
-<button [disabled]="!selectedUser" (click)="del()">del selected</button>
-
+<button [disabled]="!selectedUser"
+        (confirmed)="del()" plDanger
+>del selected</button>
 
 <!--<pl-user-list-item>Saban</pl-user-list-item>
 <pl-user-list-item>Peter</pl-user-list-item>
