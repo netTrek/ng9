@@ -19,11 +19,12 @@ https://github.com/netTrek/ng9.git
 - us@netTrek.de
 
 ## Umfragen
-- eigenes Modul [utils] erstellen (shared Module)  ---  countdownComp 
-- sekunde 0 [         grün                   ]
-- sekunde 1 [         grün           |  rot  ]
-- sekunde 2 [         grün        |     rot  ]
-- sekunde 5 [                   rot          ]
+- https://www.strawpoll.me/19846967
+- https://www.strawpoll.me/19846966
+- https://www.strawpoll.me/19846965
+- https://www.strawpoll.me/19846964
+- https://www.strawpoll.me/19846963
+- https://www.strawpoll.me/19846961
 
 ## Umfragen
 

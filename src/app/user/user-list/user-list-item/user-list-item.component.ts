@@ -30,8 +30,11 @@ export class UserListItemComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
   }
-  @HostListener('click')
-  triggerSelectEvent() {
+
+  // <div (click)="triggerSelectEvent( $event )">
+  @HostListener('click', ['$event'] )
+  triggerSelectEvent( event: MouseEvent ) {
+    console.log ( event );
     this.selectUsr.emit( this.user );
   }
 
