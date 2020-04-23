@@ -8,18 +8,24 @@
 </p>
 -->
 
-<h2>userlist</h2>
-<ng-content></ng-content>
-
 <!--
-<input type="text"
-       placeholder="filter"
-       (keyup)="filter($event)">
+
 
   [class.selected]="selectedUser?.id === user?.id"
 -->
+<input type="text"
+       placeholder="filter"
+       (keyup)="filter($event)"
+       #val
+>
+<button [disabled]="val.value.length===0"
+        (click)="resetFilter()">reset
+</button>
 
 <!--
+<hr #myLine>
+<button (click)="sendValueFromInput (val.value) ">send val</button>
+-->
 
 <pl-user-list-item
   *ngFor="let user of filtered"
@@ -30,8 +36,6 @@
 </pl-user-list-item>
 <button (click)="addRndUser()">+</button>
 <button [disabled]="!selectedUser" (click)="del()">del selected</button>
-
--->
 
 
 <!--<pl-user-list-item>Saban</pl-user-list-item>

@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChild, ContentChildren, OnInit, QueryList } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { User } from '../user';
 import { UserListItemComponent } from './user-list-item/user-list-item.component';
 
@@ -7,16 +7,20 @@ import { UserListItemComponent } from './user-list-item/user-list-item.component
   templateUrl: './user-list.component.html',
   styleUrls  : ['./user-list.component.scss']
 } )
-export class UserListComponent implements OnInit, AfterContentInit {
-
-  @ContentChild (UserListItemComponent, {static: false})
-  listItem: UserListItemComponent;
-
-  @ContentChildren (UserListItemComponent)
-  items: QueryList<UserListItemComponent>;
+export class UserListComponent implements OnInit, AfterViewInit {
 
   filtered: User[];
   selectedUser: User;
+  // mit read wurde hier def., dass das HTML Element angefragt wird
+  @ViewChild ( UserListItemComponent, { read: ElementRef } )
+  item: ElementRef<HTMLElement>;
+  @ViewChild ( 'val' )
+  inputElem: ElementRef<HTMLInputElement>;
+  /*
+  @ViewChild ( 'myLine' )
+  hr: ElementRef<HTMLHRElement>;
+  */
+  // item: UserListComponent;
 
   private filterStr        = '';
   private userList: User[] = [
@@ -24,9 +28,18 @@ export class UserListComponent implements OnInit, AfterContentInit {
     { id: 2, firstname: 'peter', lastname: 'müller' },
     { id: 3, firstname: 'paula', lastname: 'meyer' }
   ];
-  private nextInd = 4;
+  private nextInd          = 4;
 
-  constructor() {
+  constructor( private renderer: Renderer2 ) {
+  }
+
+  ngAfterViewInit(): void {
+    // console.log ( this.item  );
+    // this.item.nativeElement.style.color = 'red'; // wenn SSR nie in Frage kommen wird
+    // so bitte, falls SSR eine zukünftige Option ist
+    this.renderer.setStyle ( this.item.nativeElement, 'color', 'red' );
+    // console.log ( this.hr );
+    console.log ( this.inputElem );
   }
 
   ngOnInit(): void {
@@ -65,31 +78,18 @@ export class UserListComponent implements OnInit, AfterContentInit {
     this.updateFilter ();
   }
 
+  sendValueFromInput( value: string ) {
+    console.log ( 'hello', value );
+  }
+
+  resetFilter() {
+    this.filterStr = this.inputElem.nativeElement.value = '';
+    this.updateFilter();
+  }
+
   private updateFilter() {
     this.filtered =
       this.userList.filter ( value => `${value.firstname}${value.lastname}`
         .indexOf ( this.filterStr ) !== - 1 );
-  }
-
-  ngAfterContentInit(): void {
-    // console.log ( 'afterContentInit', this.listItem );
-    // console.log ( 'items', this.items );
-    // console.log ( 'items', this.items.toArray() );
-    this.items.toArray().forEach( item => {
-      item.selectUsr.subscribe ( user => this.handelSelection (user) );
-    } );
-    // this.items.changes.subscribe(
-    //   newList => {
-    //     console.log ( newList );
-    //   }
-    // );
-    // this.listItem.selectUsr.subscribe( () => console.log ( this.listItem, 'selected' ) );
-  }
-
-  private handelSelection( user: User ) {
-    // console.log ( user );
-    this.items.toArray().forEach( userItemComp => {
-      userItemComp.selected = userItemComp.user?.id === user?.id;
-    });
   }
 }
