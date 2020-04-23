@@ -15,10 +15,15 @@ style="width: 60%"
   <img [src]="imgPath" alt="cat" width="10%" >
 </div>
 <div class="font-bold" [class.font-red]="showRed">Lorem ipsum dolor</div>
-
 <!--
-<img [src]="imgPath" alt="cat" width="30%" >
 <img [attr.src]="imgPath" alt="cat" width="30%" >
+<img [src]="imgPath" alt="cat" width="30%" >
+<img src="{{imgPath}}" alt="cat" width="30%">
+
+<img [src]="imgPath" alt="cat" width="30%" >
+// $('img').src
+<img [attr.src]="imgPath" alt="cat" width="30%" >
+$('img').setAttribute ('src', 'wer')
 <img src="./assets/images/cat1.jpeg" alt="cat" width="30%" >
 <img src="./assets/images/{{imgFile}}" alt="cat" width="30%">
 -->

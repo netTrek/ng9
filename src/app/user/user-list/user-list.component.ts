@@ -1,12 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, ContentChildren, OnInit, QueryList } from '@angular/core';
 import { User } from '../user';
+import { UserListItemComponent } from './user-list-item/user-list-item.component';
 
 @Component ( {
   selector   : 'pl-user-list',
   templateUrl: './user-list.component.html',
   styleUrls  : ['./user-list.component.scss']
 } )
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit, AfterContentInit {
+
+  @ContentChild (UserListItemComponent, {static: false})
+  listItem: UserListItemComponent;
+
+  @ContentChildren (UserListItemComponent)
+  items: QueryList<UserListItemComponent>;
 
   filtered: User[];
   selectedUser: User;
@@ -64,4 +71,25 @@ export class UserListComponent implements OnInit {
         .indexOf ( this.filterStr ) !== - 1 );
   }
 
+  ngAfterContentInit(): void {
+    // console.log ( 'afterContentInit', this.listItem );
+    // console.log ( 'items', this.items );
+    // console.log ( 'items', this.items.toArray() );
+    this.items.toArray().forEach( item => {
+      item.selectUsr.subscribe ( user => this.handelSelection (user) );
+    } );
+    // this.items.changes.subscribe(
+    //   newList => {
+    //     console.log ( newList );
+    //   }
+    // );
+    // this.listItem.selectUsr.subscribe( () => console.log ( this.listItem, 'selected' ) );
+  }
+
+  private handelSelection( user: User ) {
+    // console.log ( user );
+    this.items.toArray().forEach( userItemComp => {
+      userItemComp.selected = userItemComp.user?.id === user?.id;
+    });
+  }
 }

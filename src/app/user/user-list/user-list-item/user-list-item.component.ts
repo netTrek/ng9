@@ -19,7 +19,8 @@ import { User } from '../../user';
 } )
 export class UserListItemComponent implements OnInit, OnChanges {
 
-  @Input () user: User;
+  @Input () user: User; // benutzerdefinierte Eigenschaft für die Vorlagen Schicht
+  // benutzerdefinierte Ereignis für die Vorlagen Schicht
   @Output() selectUsr: EventEmitter<User> = new EventEmitter<User>();
   // [class.selected]="true" --- so haben wir es in der Eltern Komp gebunden
   @HostBinding('class.selected')
