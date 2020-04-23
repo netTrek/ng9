@@ -1,4 +1,4 @@
-import { Directive, EventEmitter, HostBinding, HostListener, Output } from '@angular/core';
+import { Directive, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 
 @Directive ( {
   selector: 'button[plDanger], a[plDanger]'
@@ -14,13 +14,15 @@ export class DangerDirective {
   @Output () confirmed: EventEmitter<void> =
                new EventEmitter<void> ();
 
+  @Input()
+  plDanger = 'hello world';
   constructor( /*private elemRef: ElementRef*/ ) {
     // console.log ( 'hello world'/*, elemRef*/ );
   }
 
   @HostListener ( 'click' )
   clicked() {
-    if ( confirm ( 'willst du das wirklich?' ) ) {
+    if ( confirm ( this.plDanger.length > 0 ? this.plDanger : 'willst du das wirklich' ) ) {
       this.confirmed.emit();
     }
   }
