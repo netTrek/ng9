@@ -11,7 +11,6 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { User } from '../../user';
-import { UserService } from '../../user-service';
 
 @Component ( {
   selector   : 'pl-user-list-item',
@@ -22,27 +21,24 @@ export class UserListItemComponent implements OnInit, OnChanges {
 
   @Input () user: User; // benutzerdefinierte Eigenschaft für die Vorlagen Schicht
   // benutzerdefinierte Ereignis für die Vorlagen Schicht
-  @Output() selectUsr: EventEmitter<User> = new EventEmitter<User>();
+  @Output () selectUsr: EventEmitter<User> = new EventEmitter<User> ();
   // [class.selected]="true" --- so haben wir es in der Eltern Komp gebunden
-  @HostBinding('class.selected')
+  @HostBinding ( 'class.selected' )
   @Input ()
-  selected = false;
-  constructor( public $user: UserService ) {
-    console.log ( $user );
-  }
+  selected                                 = false;
 
   ngOnInit(): void {
   }
 
   // <div (click)="triggerSelectEvent( $event )">
-  @HostListener('click', ['$event'] )
+  @HostListener ( 'click', ['$event'] )
   triggerSelectEvent( event: MouseEvent ) {
     console.log ( event );
-    this.selectUsr.emit( this.user );
+    this.selectUsr.emit ( this.user );
   }
 
   ngOnChanges( changes: SimpleChanges ): void {
-    if ( changes.hasOwnProperty('selected') ) {
+    if ( changes.hasOwnProperty ( 'selected' ) ) {
       const selectedState = changes.selected as SimpleChange;
       if ( !selectedState.firstChange ) {
         // console.log ( this.$user.firstname, ' selection changed to ', selectedState.currentValue );

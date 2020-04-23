@@ -1,18 +1,3 @@
-<!--
-
-<p>$user-list works!</p>
-
-<p>
-  bis 13:25 pause... danach die Übung
-  for ( let $user of this.userList )
-</p>
--->
-
-<!--
-
-
-  [class.selected]="selectedUser?.id === $user?.id"
--->
 <input type="text"
        placeholder="filter"
        (keyup)="filter($event)"
@@ -22,10 +7,6 @@
         (click)="resetFilter()">reset
 </button>
 
-<!--
-<hr #myLine>
-<button (click)="sendValueFromInput (val.value) ">send val</button>
--->
 
 <pl-user-list-item
   *ngFor="let user of filtered"
@@ -40,7 +21,4 @@
         [plDanger]="delMsg"
 >{{selectedUser.firstname}} löschen?</button>
 
-<!--<pl-$user-list-item>Saban</pl-$user-list-item>
-<pl-$user-list-item>Peter</pl-$user-list-item>
-<pl-$user-list-item>Heike</pl-$user-list-item>-->
 

@@ -11,6 +11,7 @@ ng new proleit2020 --prefix pl --style scss --routing
 - ng g c user/userList --skip-tests  
 - ng g c user/user-list/userListItem --skip-tests 
 - ng generate interface user/user
+- ng generate service user/user
 
 ## repository
 https://github.com/netTrek/ng9.git
@@ -19,12 +20,12 @@ https://github.com/netTrek/ng9.git
 - us@netTrek.de
 
 ## Aufgabe
-- In das Utils Modul legen wir eine Directive ab (name: danger) - in eigenen Ordner
-- ng g d utils/danger --skip-tests --export --flat false
-- Directive soll nur auf <button> oder <a>
-- Directive soll text fett darstellen und hintergrund rot
-- Directive soll System um ein Ereignis Confirmed Bereichernt werden das Klick abh. ist
-- Confirmed darf nur gefeuert werden, wenn der Benutzer eine Confirm Message zustimmt
+
+- Erstelle einen UserService
+- Verwaltung der OriginalListe (userList)
+- Hinzufügen
+- Löschen
+- Editieren
 
 
 ## Development server

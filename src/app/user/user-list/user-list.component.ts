@@ -8,21 +8,13 @@ import { timer } from 'rxjs';
   templateUrl: './user-list.component.html',
   styleUrls  : ['./user-list.component.scss']
 } )
-export class UserListComponent implements OnInit, AfterViewInit {
+export class UserListComponent implements OnInit {
 
   filtered: User[];
   selectedUser: User;
-  // mit read wurde hier def., dass das HTML Element angefragt wird
-  @ViewChild ( UserListItemComponent, { read: ElementRef } )
-  item: ElementRef<HTMLElement>;
+
   @ViewChild ( 'val' )
   inputElem: ElementRef<HTMLInputElement>;
-  /*
-  @ViewChild ( 'myLine' )
-  hr: ElementRef<HTMLHRElement>;
-  */
-  @ViewChildren ( UserListItemComponent )
-  users: QueryList<UserListItemComponent>;
 
   private filterStr        = '';
   private userList: User[] = [
@@ -36,37 +28,11 @@ export class UserListComponent implements OnInit, AfterViewInit {
   constructor( private renderer: Renderer2 ) {
   }
 
-  ngAfterViewInit(): void {
-    // console.log ( this.item  );
-    // this.item.nativeElement.style.color = 'red'; // wenn SSR nie in Frage kommen wird
-    // so bitte, falls SSR eine zukünftige Option ist
-    // this.renderer.setStyle ( this.item.nativeElement, 'color', 'red' );
-    // console.log ( this.hr );
-    console.log ( this.inputElem );
-    // this.users.first.selected = true; // nicht direkt setzen, weil er sich im dirty Zustand befindet
-    console.log ( this.users.first.selected );
-    timer ( 0 )
-      .subscribe (
-        () => {
-          this.users.first.selected = true;
-          this.selectedUser         = this.users.first.user;
-        }
-      );
-  }
-
   ngOnInit(): void {
-    // for ( const $user of this.userList ) {
-    //   console.log ( $user );
-    // }
     this.filtered = [...this.userList];
   }
 
   setAsSelected( user: User ) {
-    // if ( this.selectedUser !== $user) {
-    //   this.selectedUser = $user;
-    // } else {
-    //   this.selectedUser = undefined;
-    // }
     this.selectedUser = this.selectedUser?.id === user?.id ? undefined : user;
     if ( this.selectedUser ) {
       this.delMsg = 'willst du ' + this.selectedUser.firstname + ' wirklich löschen'
@@ -91,10 +57,6 @@ export class UserListComponent implements OnInit, AfterViewInit {
     this.filterStr = (chgEvent.target as HTMLInputElement)
       .value;
     this.updateFilter ();
-  }
-
-  sendValueFromInput( value: string ) {
-    console.log ( 'hello', value );
   }
 
   resetFilter() {

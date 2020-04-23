@@ -9,10 +9,6 @@ import { UserService } from './user-service';
 export class UserComponent implements OnInit {
   role = 1;
 
-  constructor( public $user: UserService ) {
-    console.log ( $user );
-  }
-
   ngOnInit(): void {
   }
 
@@ -20,7 +16,4 @@ export class UserComponent implements OnInit {
     this.role = rolID;
   }
 
-  add() {
-    this.$user.num ++;
-  }
 }
