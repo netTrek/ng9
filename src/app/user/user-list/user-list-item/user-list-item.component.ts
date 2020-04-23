@@ -43,7 +43,7 @@ export class UserListItemComponent implements OnInit, OnChanges {
     if ( changes.hasOwnProperty('selected') ) {
       const selectedState = changes.selected as SimpleChange;
       if ( !selectedState.firstChange ) {
-        console.log ( this.user.firstname, ' selection changed to ', selectedState.currentValue );
+        // console.log ( this.user.firstname, ' selection changed to ', selectedState.currentValue );
       }
     }
   }

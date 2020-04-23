@@ -1,0 +1,50 @@
+<p>directive-sample works!</p>
+
+<button (click)="toggle()">toggle</button>
+<hr>
+
+
+<ul>
+  <li *ngFor="let num of [9,8,7,6,5,4,3,2,1]; even as e; odd as o"
+      [ngClass]="{'even-view': e, 'odd-view': o}"
+      [ngStyle]="{color: 'red'}"
+  >
+    {{num}}
+  </li>
+</ul>
+
+<!--
+
+<ul>
+  <li *ngFor="let num of [9,8,7,6,5,4,3,2,1]; first as f; last as l; middle as m; index as i; count as c">
+    {{num}} - {{i}} # {{c}} f{{f}} m{{m}} l{{l}}
+  </li>
+</ul>
+
+-->
+
+
+<h1 *ngIf="showImg; else noCat">Katze wird angezeigt</h1>
+<ng-template #noCat>
+  <h1>Katze wird NICHT angezeigt</h1>
+</ng-template>
+<!--aus <img *ngIf macht der Compiler -->
+<ng-template [ngIf]="showImg">
+  <img
+    src="./assets/images/cat1.jpeg"
+    alt="cat"
+    width="10%"
+  >
+</ng-template>
+
+<!--
+
+<ng-container *ngIf="showImg">
+  <h2 >showing image</h2>
+  <img
+       src="./assets/images/cat1.jpeg"
+       alt="cat"
+       width="10%"
+  >
+</ng-container>
+-->

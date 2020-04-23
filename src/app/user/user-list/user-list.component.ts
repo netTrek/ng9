@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { User } from '../user';
 import { UserListItemComponent } from './user-list-item/user-list-item.component';
+import { timer } from 'rxjs';
 
 @Component ( {
   selector   : 'pl-user-list',
@@ -20,7 +21,8 @@ export class UserListComponent implements OnInit, AfterViewInit {
   @ViewChild ( 'myLine' )
   hr: ElementRef<HTMLHRElement>;
   */
-  // item: UserListComponent;
+  @ViewChildren ( UserListItemComponent )
+  users: QueryList<UserListItemComponent>;
 
   private filterStr        = '';
   private userList: User[] = [
@@ -37,9 +39,18 @@ export class UserListComponent implements OnInit, AfterViewInit {
     // console.log ( this.item  );
     // this.item.nativeElement.style.color = 'red'; // wenn SSR nie in Frage kommen wird
     // so bitte, falls SSR eine zukünftige Option ist
-    this.renderer.setStyle ( this.item.nativeElement, 'color', 'red' );
+    // this.renderer.setStyle ( this.item.nativeElement, 'color', 'red' );
     // console.log ( this.hr );
     console.log ( this.inputElem );
+    // this.users.first.selected = true; // nicht direkt setzen, weil er sich im dirty Zustand befindet
+    console.log ( this.users.first.selected );
+    timer ( 0 )
+      .subscribe (
+        () => {
+          this.users.first.selected = true;
+          this.selectedUser         = this.users.first.user;
+        }
+      );
   }
 
   ngOnInit(): void {
@@ -84,7 +95,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
 
   resetFilter() {
     this.filterStr = this.inputElem.nativeElement.value = '';
-    this.updateFilter();
+    this.updateFilter ();
   }
 
   private updateFilter() {
