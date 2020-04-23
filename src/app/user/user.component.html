@@ -1,1 +1,10 @@
 <pl-user-list></pl-user-list>
+<hr>
+<button *plRole="role">1# is {{role}}</button>
+<button *plRole="role">2# is {{role}}</button>
+<button *plRole>3# is {{role}}</button>
+<ng-template [plRole]="role">
+  <button>4# is {{role}}</button>
+</ng-template>
+<button (click)="chgRole(2)">chg role to 2</button>
+<button (click)="chgRole(1)">chg role to 1</button>

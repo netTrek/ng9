@@ -31,6 +31,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
     { id: 3, firstname: 'paula', lastname: 'meyer' }
   ];
   private nextInd          = 4;
+  delMsg = '';
 
   constructor( private renderer: Renderer2 ) {
   }
@@ -67,6 +68,9 @@ export class UserListComponent implements OnInit, AfterViewInit {
     //   this.selectedUser = undefined;
     // }
     this.selectedUser = this.selectedUser?.id === user?.id ? undefined : user;
+    if ( this.selectedUser ) {
+      this.delMsg = 'willst du ' + this.selectedUser.firstname + ' wirklich löschen'
+    }
   }
 
   addRndUser() {

@@ -35,10 +35,10 @@
 >
 </pl-user-list-item>
 <button (click)="addRndUser()">+</button>
-<button [disabled]="!selectedUser"
+<button *ngIf="selectedUser"
         (confirmed)="del()"
-        [plDanger]="'willst du ' + selectedUser?.firstname + ' wirklich löschen'"
->del selected</button>
+        [plDanger]="delMsg"
+>{{selectedUser.firstname}} löschen?</button>
 
 <!--<pl-user-list-item>Saban</pl-user-list-item>
 <pl-user-list-item>Peter</pl-user-list-item>

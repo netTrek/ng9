@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+  role = 1;
 
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  chgRole( rolID: number ) {
+    this.role = rolID;
   }
 }
