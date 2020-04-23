@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from './user-service';
 
 @Component({
   selector: 'pl-user',
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class UserComponent implements OnInit {
   role = 1;
 
-  constructor() {
+  constructor( public $user: UserService ) {
+    console.log ( $user );
   }
 
   ngOnInit(): void {
@@ -16,5 +18,9 @@ export class UserComponent implements OnInit {
 
   chgRole( rolID: number ) {
     this.role = rolID;
+  }
+
+  add() {
+    this.$user.num ++;
   }
 }

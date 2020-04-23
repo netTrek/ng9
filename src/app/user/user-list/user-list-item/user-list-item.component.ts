@@ -11,6 +11,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { User } from '../../user';
+import { UserService } from '../../user-service';
 
 @Component ( {
   selector   : 'pl-user-list-item',
@@ -26,7 +27,8 @@ export class UserListItemComponent implements OnInit, OnChanges {
   @HostBinding('class.selected')
   @Input ()
   selected = false;
-  constructor() {
+  constructor( public $user: UserService ) {
+    console.log ( $user );
   }
 
   ngOnInit(): void {
@@ -43,7 +45,7 @@ export class UserListItemComponent implements OnInit, OnChanges {
     if ( changes.hasOwnProperty('selected') ) {
       const selectedState = changes.selected as SimpleChange;
       if ( !selectedState.firstChange ) {
-        // console.log ( this.user.firstname, ' selection changed to ', selectedState.currentValue );
+        // console.log ( this.$user.firstname, ' selection changed to ', selectedState.currentValue );
       }
     }
   }

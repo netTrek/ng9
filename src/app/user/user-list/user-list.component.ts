@@ -55,15 +55,15 @@ export class UserListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    // for ( const user of this.userList ) {
-    //   console.log ( user );
+    // for ( const $user of this.userList ) {
+    //   console.log ( $user );
     // }
     this.filtered = [...this.userList];
   }
 
   setAsSelected( user: User ) {
-    // if ( this.selectedUser !== user) {
-    //   this.selectedUser = user;
+    // if ( this.selectedUser !== $user) {
+    //   this.selectedUser = $user;
     // } else {
     //   this.selectedUser = undefined;
     // }
