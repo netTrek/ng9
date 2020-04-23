@@ -1,0 +1,70 @@
+<p>pipe-samples works!</p>
+
+<p>
+  1 m = 100 cm.
+  1 km = 1,000 m.
+  1 in (inch) = 2.54 cm.
+  1232 | converter : 'm' : 'cm'
+</p>
+
+<ul>
+  <li>{{1 | convert : 'm' : 'cm'}}</li>
+  <li>100</li>
+  <li>{{1 | convert : 'km' : 'm'}}</li>
+  <li>1000</li>
+  <li>{{1 | convert : 'in' : 'cm'}}</li>
+  <li>2.54</li>
+  <li>{{1 | convert : 'in' : 'm'}}</li>
+</ul>
+
+
+<ul>
+  <!--  <li>{{now}}</li>
+  <li>{{now | date }}</li>
+  <li>{{now | date : 'yy/MM'}}</li>
+  <li>{{now | date : 'full'}}</li>
+  <li>{{now | date : 'long'}}</li>
+  <li>{{now | date : 'medium'}}</li>
+  <li>{{now | date : 'full' : '+0900' }}</li>-->
+  <li>{{now | date : 'full' : '-0200'  }}</li>
+  <li>{{now | date : 'full' : '-0200' : 'en' }}</li>
+  <li>{{1 | currency : 'EUR' }}</li>
+  <li>{{num | number }}</li>
+  <li>{{num | number : '.2-3' : 'en' }}</li>
+  <li>{{12312312.123 | number : '.2-3' : 'de' }}</li>
+  <li>{{12312312.123 | number : '.2-3' : 'en' }}</li>
+  <li>{{1 | currency : 'EUR' : 'symbol' : '.2-3' }}</li>
+  <li>{{1 | currency : 'EUR' : 'symbol' : '.2-3' : 'en' }}</li>
+</ul>
+
+<!--
+<ul>
+  <li>{{num}}</li>
+  <li>{{num | currency }}</li>
+  <li>{{num | currency : 'EUR' }}</li>
+  <li>{{num | currency : 'EUR' : 'symbol' }}</li>
+  <li>{{num | currency : 'EUR' : 'code' }}</li>
+  <li>{{num | currency : 'EUR' : 'code' : '.2-3' }}</li>
+  <li>{{1 | currency : 'EUR' : 'code' : '.2-3' }}</li>
+</ul>
+
+
+<ul>
+  <li>{{num}}</li>
+  <li>{{num | number }}</li>
+  <li>{{num | number : '.2-2'}}</li>
+  <li>{{num | number : '2.2-2'}}</li>
+</ul>
+-->
+
+<!--
+<ul>
+  <li>{{str}}</li>
+  <li>{{str | slice : 3}}</li>
+  <li>{{str | slice : -3}}</li>
+  <li>{{str | slice : 0 : 4}}</li>
+  <li>{{str | slice : -3 : -2}}</li>
+  <li>{{str | slice : 3 | lowercase}}</li>
+  <li>{{str | uppercase}}</li>
+</ul>
+-->
