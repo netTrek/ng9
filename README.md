@@ -19,13 +19,14 @@ https://github.com/netTrek/ng9.git
 ## Kontakt
 - us@netTrek.de
 
-## Aufgabe
-
-- Erstelle einen UserService
-- Verwaltung der OriginalListe (userList)
-- Hinzufügen
-- Löschen
-- Editieren
+## Umfragen
+- https://www.strawpoll.me/19855814
+- https://www.strawpoll.me/19855840
+- https://www.strawpoll.me/19855865
+- https://www.strawpoll.me/19855870
+- https://www.strawpoll.me/19855876
+- https://www.strawpoll.me/19855888
+- https://www.strawpoll.me/19855895
 
 
 ## Development server
