@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { USER_TOKEN, USERS_TOKEN } from './app.token';
+import { UserService } from './user/user-service';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'pl-root',
@@ -7,6 +10,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'proleit2020';
+
+  constructor(
+    @Inject (USER_TOKEN) usr: string,
+    @Inject (USERS_TOKEN) usrs: string[],
+    $user: UserService
+  ) {
+    // console.log ( usr , usrs );
+    timer( 1500 ).subscribe(
+      () => $user.addUsr( {firstname: 'rxjs', lastname: 'rocks'} )
+    );
+  }
 
   ichHabeFertig(  ) {
     console.log ( 'fertig ohne fehler' );

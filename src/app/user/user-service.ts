@@ -1,23 +1,18 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable ( { providedIn: 'root' } )
 export class UserService {
 
-  get userList(): User[] {
-    return this._userList;
-  }
-
-  // tslint:disable-next-line
-  private _userList: User[] = [
+  readonly userList$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([
     { id: 1, firstname: 'saban', lastname: 'ünlü' },
     { id: 2, firstname: 'peter', lastname: 'müller' },
     { id: 3, firstname: 'paula', lastname: 'meyer' }
-  ];
+  ]);
   private nextInd           = 4;
 
   constructor() {
-    console.log ( 'hello USer Service' );
   }
 
   addUsr( usr ): User {
@@ -25,14 +20,17 @@ export class UserService {
     usr.id = usr.id || lng;
     usr.firstname += lng;
     usr.lastname += lng;
-    this.userList.push ( usr );
+    this.userList$.value.push( usr );
+    this.userList$.next( this.userList$.value );
     return usr;
   }
 
   del( usr: User): User|undefined {
-    const ind = this._userList.indexOf( usr );
+    const ind = this.userList$.value.indexOf( usr );
     if ( ind > -1 ) {
-      return this._userList.splice( ind, 1 )[0];
+      const deletedUsr = this.userList$.value.splice( ind, 1 )[0];
+      this.userList$.next( this.userList$.value );
+      return deletedUsr;
     }
     return;
   }

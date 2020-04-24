@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';
 /*
 
 <p>
@@ -14,6 +14,10 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'convert'/*, pure: false*/
 })
 export class ConvertPipe implements PipeTransform {
+
+  constructor( @Inject (LOCALE_ID) lng: string ) {
+    console.log ( lng );
+  }
 
   transform(value: number,
             $in: 'm'|'km'|'in'|'cm',

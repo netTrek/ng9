@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user-service';
 
@@ -23,7 +23,7 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.filtered = [...this.$user.userList];
+    this.$user.userList$.subscribe( () => this.updateFilter() );
   }
 
   setAsSelected( user: User ) {
@@ -39,13 +39,11 @@ export class UserListComponent implements OnInit {
       lastname: ['meyer', 'müller', 'maier', 'muster'][Math.round( Math.random() * 3)]
     };
     this.selectedUser = this.$user.addUsr( usr );
-    this.updateFilter ();
   }
 
   del() {
     this.$user.del( this.selectedUser );
     this.selectedUser = undefined;
-    this.updateFilter ();
   }
 
   filter( chgEvent: Event ) {
@@ -61,7 +59,7 @@ export class UserListComponent implements OnInit {
 
   private updateFilter() {
     this.filtered =
-      this.$user.userList.filter ( value => `${value.firstname}${value.lastname}`
+      this.$user.userList$.value.filter ( value => `${value.firstname}${value.lastname}`
         .indexOf ( this.filterStr ) !== - 1 );
   }
 }

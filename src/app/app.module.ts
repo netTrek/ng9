@@ -11,6 +11,7 @@ import { PipeSamplesModule } from './pipe-samples/pipe-samples.module';
 
 import localeDE from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
+import { USER_TOKEN, USERS_TOKEN } from './app.token';
 registerLocaleData( localeDE );
 
 
@@ -28,7 +29,9 @@ registerLocaleData( localeDE );
     PipeSamplesModule
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'de'}
+    {provide: LOCALE_ID, useValue: 'de'},
+    {provide: USER_TOKEN, useValue: 'SABAN'},
+    {provide: USERS_TOKEN, useValue: 'SABAN', multi: true}
   ],
   bootstrap: [AppComponent]
 })
