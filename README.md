@@ -12,6 +12,8 @@ ng new proleit2020 --prefix pl --style scss --routing
 - ng g c user/user-list/userListItem --skip-tests 
 - ng generate interface user/user
 - ng generate service user/user
+- ng generate module dash --routing --module app --route dash
+
 
 ## repository
 https://github.com/netTrek/ng9.git
@@ -28,6 +30,14 @@ https://github.com/netTrek/ng9.git
 - https://www.strawpoll.me/19855888
 - https://www.strawpoll.me/19855895
 
+
+------------------------------------
+| adress                            |
+| <nav> kontak | map                |
+------------------------------------
+| form                              |   
+|                                   |
+------------------------------------
 
 ## Development server
 

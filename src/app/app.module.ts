@@ -15,6 +15,7 @@ import { USER_TOKEN, USERS_TOKEN } from './app.token';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { LoadingInterceptorService } from './loading-interceptor.service';
+import { ContactModule } from './contact/contact.module';
 registerLocaleData( localeDE );
 
 
@@ -30,7 +31,8 @@ registerLocaleData( localeDE );
     UtilsModule,
     DirectiveSamplesModule,
     PipeSamplesModule,
-    HttpClientModule
+    HttpClientModule,
+    ContactModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true  },

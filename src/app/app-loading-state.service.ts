@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
+import { timer } from 'rxjs';
 
 @Injectable ( {
   providedIn: 'root'
 } )
 export class AppLoadingStateService {
 
+  // tslint:disable-next-line
+  private _counts = 0;
+
   get counts(): number {
     return this._counts;
   }
-  // tslint:disable-next-line
-  private _counts = 0;
 
   constructor() {
   }
@@ -19,6 +21,10 @@ export class AppLoadingStateService {
   }
 
   decrement() {
-    this._counts --;
+    timer ( 10 )
+      .subscribe (
+        () => this._counts --
+      );
+
   }
 }

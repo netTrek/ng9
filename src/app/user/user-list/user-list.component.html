@@ -29,6 +29,7 @@
 <button (confirmed)="del()"
         [plDanger]="delMsg"
 >{{selectedUser.firstname}} löschen?</button>
+  <a [routerLink]="[selectedUser.id]">show details</a>
   <hr>
   <input type="text" name="firstname"
          placeholder="firstname" [value]="selectedUser.firstname" #inpFirstname>

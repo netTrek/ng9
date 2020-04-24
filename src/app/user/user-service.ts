@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { tap } from 'rxjs/operators';
@@ -52,5 +52,9 @@ export class UserService {
            err => console.error( err ),                 // fehler
            () => console.log ( 'daten wurden geladen' ) // keine weiteren daten zu erwarten
          );
+  }
+
+  getUserByID( id: number ): Observable<User> {
+    return this.$http.get<User>( environment.api + id );
   }
 }

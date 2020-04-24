@@ -1,11 +1,26 @@
+<!--
 <div *ngIf="$loadingState.counts > 0">
   ....loading
 </div>
-<h1>{{ title }} app is running!</h1>
+-->
 
-<pl-user></pl-user>
+
+<h1>{{ title }} app is running!</h1>
+<nav>
+  <a routerLink="home" routerLinkActive="active-route">home</a> |
+  <a routerLink="user" routerLinkActive="active-route">user</a> |
+  <a routerLink="dash" routerLinkActive="active-route">dash</a> |
+  <a routerLink="contact" routerLinkActive="active-route">contact</a>
+</nav>
+<hr>
+  <router-outlet></router-outlet>
+
+<footer>
+  netTrek
+</footer>
 
 <!--
+<pl-user></pl-user>
 <pl-pipe-samples></pl-pipe-samples>
 
 <pl-directive-sample></pl-directive-sample>

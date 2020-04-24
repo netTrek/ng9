@@ -5,12 +5,15 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserListItemComponent } from './user-list/user-list-item/user-list-item.component';
 import { UtilsModule } from '../utils/utils.module';
 import { USER_TOKEN, USERS_TOKEN } from '../app.token';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule( {
-  declarations: [UserComponent, UserListComponent, UserListItemComponent],
+  declarations: [UserComponent, UserListComponent, UserListItemComponent, UserDetailsComponent],
   imports: [
     CommonModule,
-    UtilsModule
+    UtilsModule,
+    RouterModule
   ],
   providers: [
     {provide: USER_TOKEN, useValue: 'PETER'},
