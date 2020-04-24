@@ -25,9 +25,16 @@
 >
 </pl-user-list-item>
 <button (click)="addRndUser()">+</button>
-<button *ngIf="selectedUser"
-        (confirmed)="del()"
+<ng-container *ngIf="selectedUser">
+<button (confirmed)="del()"
         [plDanger]="delMsg"
 >{{selectedUser.firstname}} löschen?</button>
+  <hr>
+  <input type="text" name="firstname"
+         placeholder="firstname" [value]="selectedUser.firstname" #inpFirstname>
+  <input type="text" name="lastname"
+         placeholder="lastname" [value]="selectedUser.lastname"  #inpLastname>
+  <button (click)="update(inpFirstname.value, inpLastname.value)">update</button>
+</ng-container>
 
 

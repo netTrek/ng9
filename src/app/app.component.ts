@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { USER_TOKEN, USERS_TOKEN } from './app.token';
 import { UserService } from './user/user-service';
 import { timer } from 'rxjs';
+import { AppLoadingStateService } from './app-loading-state.service';
 
 @Component({
   selector: 'pl-root',
@@ -14,12 +15,13 @@ export class AppComponent {
   constructor(
     @Inject (USER_TOKEN) usr: string,
     @Inject (USERS_TOKEN) usrs: string[],
-    $user: UserService
+    $user: UserService,
+    public $loadingState: AppLoadingStateService
   ) {
     // console.log ( usr , usrs );
-    timer( 1500 ).subscribe(
-      () => $user.addUsr( {firstname: 'rxjs', lastname: 'rocks'} )
-    );
+    // timer( 1500 ).subscribe(
+    //   () => $user.addUsr( {firstname: 'rxjs', lastname: 'rocks'} )
+    // );
   }
 
   ichHabeFertig(  ) {

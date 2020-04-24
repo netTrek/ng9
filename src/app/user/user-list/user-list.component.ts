@@ -33,12 +33,12 @@ export class UserListComponent implements OnInit {
     }
   }
 
-  addRndUser() {
+  async addRndUser() {
     const usr: User = {
       firstname: ['frank', 'paula', 'heiko', 'hanna'][Math.round( Math.random() * 3)],
       lastname: ['meyer', 'müller', 'maier', 'muster'][Math.round( Math.random() * 3)]
     };
-    this.selectedUser = this.$user.addUsr( usr );
+    this.selectedUser = await this.$user.addUsr( usr );
   }
 
   del() {
@@ -61,5 +61,9 @@ export class UserListComponent implements OnInit {
     this.filtered =
       this.$user.userList$.value.filter ( value => `${value.firstname}${value.lastname}`
         .indexOf ( this.filterStr ) !== - 1 );
+  }
+
+  update( firstname: string, lastname: string ) {
+    this.$user.update ( { ...this.selectedUser, firstname, lastname} );
   }
 }

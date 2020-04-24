@@ -12,7 +12,9 @@ import { PipeSamplesModule } from './pipe-samples/pipe-samples.module';
 import localeDE from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
 import { USER_TOKEN, USERS_TOKEN } from './app.token';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorService } from './auth-interceptor.service';
+import { LoadingInterceptorService } from './loading-interceptor.service';
 registerLocaleData( localeDE );
 
 
@@ -31,6 +33,8 @@ registerLocaleData( localeDE );
     HttpClientModule
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true  },
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi: true  },
     {provide: LOCALE_ID, useValue: 'de'},
     {provide: USER_TOKEN, useValue: 'SABAN'},
     {provide: USERS_TOKEN, useValue: 'SABAN', multi: true}

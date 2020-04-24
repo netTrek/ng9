@@ -3,36 +3,42 @@ import { User } from './user';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { tap } from 'rxjs/operators';
 
 @Injectable ( { providedIn: 'root' } )
 export class UserService {
 
   readonly userList$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([
   ]);
-  private nextInd           = 4;
 
   constructor( private $http: HttpClient) {
     this.init();
   }
 
-  addUsr( usr ): User {
-    const lng = this.nextInd ++;
-    usr.id = usr.id || lng;
-    usr.firstname += lng;
-    usr.lastname += lng;
-    this.userList$.value.push( usr );
-    this.userList$.next( this.userList$.value );
-    return usr;
+  addUsr( usr ): Promise<User> {
+    return this.$http.post<User>( environment.api , usr )
+               .pipe(
+                 tap( () => this.updateUserList() )
+               )
+               .toPromise();
+    //    .subscribe( () => this.updateUserList() );
+    // this.userList$.next( this.userList$.value );
   }
 
-  del( usr: User): User|undefined {
-    const ind = this.userList$.value.indexOf( usr );
-    if ( ind > -1 ) {
-      const deletedUsr = this.userList$.value.splice( ind, 1 )[0];
-      this.userList$.next( this.userList$.value );
-      return deletedUsr;
-    }
-    return;
+  update( usr ): Promise<User> {
+    return this.$http.put<User>( environment.api + usr.id , usr )
+               .pipe(
+                 tap( () => this.updateUserList() )
+               )
+               .toPromise();
+  }
+
+
+  del( usr: User) {
+    this.$http.delete( environment.api + usr.id ).subscribe(
+      () => this.updateUserList(),
+        err => console.error( err )
+    );
   }
 
   private init() {
