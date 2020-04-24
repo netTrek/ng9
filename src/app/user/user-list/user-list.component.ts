@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { User } from '../user';
-import { UserListItemComponent } from './user-list-item/user-list-item.component';
-import { timer } from 'rxjs';
+import { UserService } from '../user-service';
 
 @Component ( {
   selector   : 'pl-user-list',
@@ -12,43 +11,39 @@ export class UserListComponent implements OnInit {
 
   filtered: User[];
   selectedUser: User;
+  delMsg = '';
 
   @ViewChild ( 'val' )
   inputElem: ElementRef<HTMLInputElement>;
 
   private filterStr        = '';
-  private userList: User[] = [
-    { id: 1, firstname: 'saban', lastname: 'ünlü' },
-    { id: 2, firstname: 'peter', lastname: 'müller' },
-    { id: 3, firstname: 'paula', lastname: 'meyer' }
-  ];
-  private nextInd          = 4;
-  delMsg = '';
 
-  constructor( private renderer: Renderer2 ) {
+
+  constructor( public $user: UserService) {
   }
 
   ngOnInit(): void {
-    this.filtered = [...this.userList];
+    this.filtered = [...this.$user.userList];
   }
 
   setAsSelected( user: User ) {
     this.selectedUser = this.selectedUser?.id === user?.id ? undefined : user;
     if ( this.selectedUser ) {
-      this.delMsg = 'willst du ' + this.selectedUser.firstname + ' wirklich löschen'
+      this.delMsg = 'willst du ' + this.selectedUser.firstname + ' wirklich löschen';
     }
   }
 
   addRndUser() {
-    const lng = this.nextInd ++;
-    this.userList.push (
-      { id: lng, firstname: 'paula' + lng, lastname: 'meyer' + lng }
-    );
+    const usr: User = {
+      firstname: ['frank', 'paula', 'heiko', 'hanna'][Math.round( Math.random() * 3)],
+      lastname: ['meyer', 'müller', 'maier', 'muster'][Math.round( Math.random() * 3)]
+    };
+    this.selectedUser = this.$user.addUsr( usr );
     this.updateFilter ();
   }
 
   del() {
-    this.userList     = this.userList.filter ( value => value?.id !== this.selectedUser?.id );
+    this.$user.del( this.selectedUser );
     this.selectedUser = undefined;
     this.updateFilter ();
   }
@@ -66,7 +61,7 @@ export class UserListComponent implements OnInit {
 
   private updateFilter() {
     this.filtered =
-      this.userList.filter ( value => `${value.firstname}${value.lastname}`
+      this.$user.userList.filter ( value => `${value.firstname}${value.lastname}`
         .indexOf ( this.filterStr ) !== - 1 );
   }
 }

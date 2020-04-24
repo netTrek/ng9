@@ -12,6 +12,9 @@ import { UtilsModule } from '../utils/utils.module';
     UtilsModule
   ],
   providers: [],
-  exports: [UserComponent]
+  exports: [UserComponent,
+            UserListComponent,
+            UserListItemComponent
+  ]
 })
 export class UserModule { }
