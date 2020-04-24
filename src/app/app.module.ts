@@ -12,6 +12,7 @@ import { PipeSamplesModule } from './pipe-samples/pipe-samples.module';
 import localeDE from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
 import { USER_TOKEN, USERS_TOKEN } from './app.token';
+import { HttpClientModule } from '@angular/common/http';
 registerLocaleData( localeDE );
 
 
@@ -26,7 +27,8 @@ registerLocaleData( localeDE );
     BindingSamplesModule,
     UtilsModule,
     DirectiveSamplesModule,
-    PipeSamplesModule
+    PipeSamplesModule,
+    HttpClientModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'de'},

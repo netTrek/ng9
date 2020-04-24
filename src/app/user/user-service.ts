@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable ( { providedIn: 'root' } )
 export class UserService {
 
   readonly userList$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([
-    { id: 1, firstname: 'saban', lastname: 'ünlü' },
-    { id: 2, firstname: 'peter', lastname: 'müller' },
-    { id: 3, firstname: 'paula', lastname: 'meyer' }
   ]);
   private nextInd           = 4;
 
-  constructor() {
+  constructor( private $http: HttpClient) {
+    this.init();
   }
 
   addUsr( usr ): User {
@@ -33,5 +33,18 @@ export class UserService {
       return deletedUsr;
     }
     return;
+  }
+
+  private init() {
+    this.updateUserList();
+  }
+
+  private updateUserList() {
+    this.$http.get<User[]>( environment.api )
+         .subscribe(
+           users => this.userList$.next( users ),       // neu daten kommen rein
+           err => console.error( err ),                 // fehler
+           () => console.log ( 'daten wurden geladen' ) // keine weiteren daten zu erwarten
+         );
   }
 }
