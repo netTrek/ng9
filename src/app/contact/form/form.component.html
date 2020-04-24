@@ -1,3 +1,40 @@
-<form action="">
-  <input type="text">
+<form #myForm="ngForm" (ngSubmit)="submit(myForm.value)">
+  <input type="text"
+         placeholder="Name"
+         name="name"
+         ngModel
+         #name="ngModel"
+         required
+  >
+  <span ngModelGroup="detail">
+  <input type="text"
+         placeholder="E-Mail"
+         name="mail"
+         ngModel
+         #mail="ngModel"
+         email required>
+    <div *ngIf="mail.dirty && mail?.errors">
+      <span *ngIf="mail?.errors?.required; else mailErr">required</span>
+      <ng-template #mailErr>
+        <span>valide mail bitte</span>
+      </ng-template>
+    </div>
+  <input type="text"
+         placeholder="Ort"
+         name="city"
+         ngModel
+         #city="ngModel">
+  </span>
+  <button type="submit" [disabled]="myForm.invalid">submit</button>
+  <button type="reset" [disabled]="myForm.pristine">reset</button>
 </form>
+<!--
+<p>{{myForm.valid | json}}</p>
+<p>{{myForm.value | json}}</p>
+<p>touched:= {{mail.touched | json}}</p>
+<p>untouched:= {{mail.untouched | json}}</p>
+<p>dirty:= {{mail.dirty | json}}</p>
+<p>pristine:= {{mail.pristine | json}}</p>
+<p>{{mail?.errors | json}}</p>
+<p>{{mail.value | json}}</p>
+-->

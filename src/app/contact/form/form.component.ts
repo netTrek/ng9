@@ -12,4 +12,7 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  submit( value: any ) {
+    console.log ( value );
+  }
 }
